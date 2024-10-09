@@ -8,7 +8,7 @@ import Header from "@/components/Header";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa6";
 
-// Define the User type
+// Define the country type
 interface Flags {
   png: string;
 }
@@ -18,7 +18,7 @@ interface Currencies {
 interface Languages {
   name: string;
 }
-interface User {
+interface Country {
   capital: string;
   area: number;
   name: string;
@@ -36,7 +36,7 @@ interface User {
 export default function Details() {
   const pathname = usePathname();
   const area = Number(pathname.split("/").pop()); // Convert 'area' from the path to a number
-  const [user, setUser] = useState<User | null>(null);
+  const [country, setCountry] = useState<Country | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -46,12 +46,14 @@ export default function Details() {
       axios
         .get("/data.json")
         .then((response) => {
-          const users: User[] = response.data;
-          const selectedUser = users.find((user) => user.area === area);
-          if (selectedUser) {
-            setUser(selectedUser);
+          const countries: Country[] = response.data;
+          const selectedcountry = countries.find(
+            (country) => country.area === area
+          );
+          if (selectedcountry) {
+            setCountry(selectedcountry);
           } else {
-            setError("User not found");
+            setError("country not found");
           }
           setLoading(false);
         })
@@ -69,7 +71,7 @@ export default function Details() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <main className="bg-very-light-grey dark:bg-dark-mode-background h-[100vh]">
+    <main className="bg-very-light-grey dark:bg-dark-mode-background min-h-screen">
       <Header />
       <div className="w-[90%] m-auto">
         <Link
@@ -78,47 +80,47 @@ export default function Details() {
         >
           <FaArrowLeft /> Back
         </Link>
-        {user && (
+        {country && (
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-32">
             <img
-              src={user.flags.png}
-              alt={`Flag of ${user.name}`}
+              src={country.flags.png}
+              alt={`Flag of ${country.name}`}
               className="w-full lg:w-2/5"
             />
             <div className="flex flex-col gap-10 lg:gap-12">
               <p className="font-bold text-[26px] leading-[23px] text-very-dark-blue dark:text-white">
-                {user.name}
+                {country.name}
               </p>
               <div className="flex flex-col lg:flex-row gap-8  lg:gap-24 items-start">
                 <div className="grid gap-2 text-very-dark-blue dark:text-very-light-grey">
                   <p className="font-bold text-[13px] leading-[17px]">
                     Native Name:{" "}
                     <span className="font-semibold text-dark-grey">
-                      {user.nativeName}
+                      {country.nativeName}
                     </span>
                   </p>
                   <p className="font-bold text-[13px] leading-[17px]">
                     Population:{" "}
                     <span className="font-semibold text-dark-grey">
-                      {user.population}
+                      {country.population}
                     </span>
                   </p>
                   <p className="font-bold text-[13px] leading-[17px]">
                     Region:{" "}
                     <span className="font-semibold text-dark-grey">
-                      {user.region}
+                      {country.region}
                     </span>
                   </p>
                   <p className="font-bold text-[13px] leading-[17px]">
                     Sub region:{" "}
                     <span className="font-semibold text-dark-grey">
-                      {user.subregion}
+                      {country.subregion}
                     </span>
                   </p>
                   <p className="font-bold text-[13px] leading-[17px]">
                     Capital:{" "}
                     <span className="font-semibold text-dark-grey">
-                      {user.capital}
+                      {country.capital}
                     </span>
                   </p>
                 </div>
@@ -126,12 +128,12 @@ export default function Details() {
                   <p className="font-bold text-[13px] leading-[17px]">
                     Top Level Domain:{" "}
                     <span className="font-semibold text-dark-grey">
-                      {user.topLevelDomain}
+                      {country.topLevelDomain}
                     </span>
                   </p>
                   <div className="flex gap-1 font-bold text-[13px] leading-[17px] text-very-dark-blue dark:text-very-light-grey">
                     Currencies:
-                    {user.currencies.map((currency, index) => (
+                    {country.currencies.map((currency, index) => (
                       <div
                         key={index}
                         className="font-bold text-[13px] leading-[17px]"
@@ -144,7 +146,7 @@ export default function Details() {
                   </div>
                   <div className="flex gap-1 font-bold text-[13px] leading-[17px] text-very-dark-blue dark:text-very-light-grey">
                     Languages:
-                    {user.languages.map((language, index) => (
+                    {country.languages.map((language, index) => (
                       <div
                         key={index}
                         className="font-bold text-[13px] leading-[17px]"
@@ -157,14 +159,22 @@ export default function Details() {
                   </div>
                 </div>
               </div>
-              <div className="lg:mt-6 flex flex-wrap justify-center items-center gap-3 font-bold text-[13px] leading-[17px] text-very-dark-blue dark:text-very-light-grey">
-                Border Countries:
-                {user.borders.map((border, index) => (
-                  <div key={index} className="">
-                    <h3 className="font-semibold shadow bg-white rounded text-dark-grey dark:text-very-light-grey dark:bg-dark-mode-element w-fit py-1 px-5">{border}</h3>
-                  </div>
-                ))}
-              </div>
+              {country.borders && country.borders.length > 0 ? (
+                <div className="lg:mt-6 flex flex-wrap justify-center items-center gap-3 font-bold text-[13px] leading-[17px] text-very-dark-blue dark:text-very-light-grey">
+                  Border Countries:
+                  {country.borders.map((border, index) => (
+                    <div key={index} className="">
+                      <h3 className="font-semibold shadow bg-white rounded text-dark-grey dark:text-very-light-grey dark:bg-dark-mode-element w-fit py-1 px-5">
+                        {border}
+                      </h3>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="font-bold text-[20px] text-very-dark-blue dark:text-very-light-grey">
+                  There is no borders!
+                </p>
+              )}
             </div>
           </div>
         )}
