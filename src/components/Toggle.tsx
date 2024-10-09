@@ -29,7 +29,7 @@ export default function Toggle() {
       >
         {darkMode ? <FaMoon className="" /> : <FaRegMoon className="" />}
 
-        <p className="text-[14px] dark:text-white text-very-dark-blue">
+        <p className="text-[12px] lg:text-[14px] dark:text-white text-very-dark-blue">
           Dark Mode
         </p>
       </div>

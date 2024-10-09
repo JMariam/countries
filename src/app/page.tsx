@@ -6,14 +6,16 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Link from "next/link";
 
+interface Flags {
+  png: string;
+}
 interface User {
   name: string;
   population: number;
   capital: string;
   region: string;
   area: string;
-  flags: object;
-  png: string;
+  flags: Flags;
 }
 export default function Home() {
   const [data, setData] = useState<User[]>([]); // Type the state as an array of User
@@ -45,8 +47,8 @@ export default function Home() {
   return (
     <main className="bg-very-light-grey dark:bg-dark-mode-background">
       <Header />
-      <div className="w-[90%] m-auto p-6">
-        <div className="grid grid-cols-4 gap-16">
+      <div className="w-[90%] m-auto  p-3 lg:p-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-16">
           {data.map((user, index) => (
             <Link href={`/details/${user.area}`} key={index}>
               <div
