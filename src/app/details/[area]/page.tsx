@@ -81,7 +81,7 @@ export default function Details() {
           <FaArrowLeft /> Back
         </Link>
         {country && (
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-32">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-32">
             <img
               src={country.flags.png}
               alt={`Flag of ${country.name}`}

@@ -18,7 +18,7 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({ options, selected, onSe
   };
 
   return (
-    <div className="relative inline-block w-[12rem]" >
+    <div className="w-[13rem] lg:w-[10rem]" >
       <button
         onClick={toggleDropdown}
         className="flex items-center justify-between  w-full shadow p-3 rounded-md bg-white dark:bg-dark-mode-element text-dark-grey"

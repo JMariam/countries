@@ -75,15 +75,15 @@ export default function Home() {
   return (
     <main className="bg-very-light-grey dark:bg-dark-mode-background">
       <Header />
-      <div className="mt-10 mb-14 w-[90%] m-auto p-6 flex justify-between items-center">
-        <div className="text-dark-grey dark:text-very-light-grey flex items-center gap-4 bg-white dark:bg-dark-mode-element w-[30rem] rounded shadow p-3">
-          <IoIosSearch className="text" />{" "}
+      <div className="mt-6 mb-8 lg:mt-10 lg:mb-14 w-[90%] gap-4 m-auto lg:p-6 flex flex-col lg:flex-row lg:justify-between lg:items-center">
+        <div className="text-dark-grey dark:text-very-light-grey flex items-center gap-4 bg-white dark:bg-dark-mode-element w-full lg:w-[30rem] rounded shadow p-3">
+          <IoIosSearch className="" />{" "}
           <input
             type="text"
             placeholder="Search for a country..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="bg-transparent placeholder:text-dark-grey outline-none w-[26rem]"
+            className="bg-transparent placeholder:text-dark-grey outline-none w-full"
           />
         </div>
         {/* <div className="text-dark-grey dark:text-very-light-grey flex items-center gap-4 bg-white dark:bg-dark-mode-element  rounded shadow p-3">
@@ -116,7 +116,7 @@ export default function Home() {
                   <img
                     src={country.flags.png}
                     alt=""
-                    className="h-60 lg:h-44 w-full"
+                    className="lg:h-44 w-full"
                   />
                   <div className="p-6">
                     <p className="font-bold text-[20px] leading-[23px] text-very-dark-blue dark:text-white">
