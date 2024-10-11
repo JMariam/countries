@@ -172,7 +172,7 @@ export default function Details() {
                 </div>
               ) : (
                 <p className="font-bold text-[20px] text-very-dark-blue dark:text-very-light-grey">
-                  There is no borders!
+                  There are no borders!
                 </p>
               )}
             </div>

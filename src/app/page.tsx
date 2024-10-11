@@ -66,14 +66,14 @@ export default function Home() {
 
   if (loading)
     return (
-      <p className="text-[20px] text-very-dark-blue dark:text-white">
+      <p className="">
         Loading...
       </p>
     );
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <main className="bg-very-light-grey dark:bg-dark-mode-background">
+    <main className="bg-very-light-grey dark:bg-dark-mode-background ">
       <Header />
       <div className="mt-6 mb-8 lg:mt-10 lg:mb-14 w-[90%] gap-4 m-auto lg:p-6 flex flex-col lg:flex-row lg:justify-between lg:items-center">
         <div className="text-dark-grey dark:text-very-light-grey flex items-center gap-4 bg-white dark:bg-dark-mode-element w-full lg:w-[30rem] rounded shadow p-3">
@@ -143,7 +143,7 @@ export default function Home() {
               </Link>
             ))
           ) : (
-            <p className="font-bold text-[20px] leading-[23px] text-very-dark-blue dark:text-white">
+            <p className="font-bold text-[20px] leading-[23px] h-screen text-very-dark-blue dark:text-white">
               No countries match your search.
             </p>
           )}
